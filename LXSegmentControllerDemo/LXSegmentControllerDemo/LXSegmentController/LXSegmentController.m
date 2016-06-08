@@ -476,7 +476,22 @@
         }
         
         if (!_titleMargin) {
-            _titleMargin = titleMargin < margin? margin: titleMargin;
+            if (titleMargin < margin) {
+                _titleMargin = margin;
+            } else {
+                if (_underLineW == _titleWidth) {
+                    _underLineW = YZScreenW/count;
+                }
+                _titleMargin = 0;
+                _titleWidth = YZScreenW/count;
+                [self.titleWidths removeAllObjects];
+                for (NSInteger i = 0; i < count; i++) {
+                    [self.titleWidths addObject:@(_titleWidth)];
+                }
+                
+            }
+            
+//            _titleMargin = titleMargin < margin? margin : titleMargin;
             _titleMargin = _titleWidth ? 0 : _titleMargin;
         }
         
@@ -542,7 +557,7 @@
             
             UILabel *label = [[LXDisplayTitleLabel alloc] init];
             
-//            label.backgroundColor = [UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1];
+            label.backgroundColor = [UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1];
             
             label.tag = i;
             

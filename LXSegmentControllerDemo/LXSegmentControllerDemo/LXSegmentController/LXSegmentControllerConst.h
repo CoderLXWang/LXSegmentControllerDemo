@@ -31,7 +31,7 @@ static CGFloat const YZUnderLineH = 2;
 #define YZTitleFont [UIFont systemFontOfSize:15]
 
 // 默认标题间距
-static CGFloat const margin = 20;
+static CGFloat const margin = 10;
 
 static NSString * const ID = @"cell";
 

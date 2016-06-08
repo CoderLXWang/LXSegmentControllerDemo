@@ -32,7 +32,7 @@
 
 - (void)demo1 {
     NSMutableArray *array = [NSMutableArray array];
-    for (NSInteger i = 0; i < 5; i++) {
+    for (NSInteger i = 0; i < 12; i++) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 80)];
         view.backgroundColor = [UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1];
         
@@ -73,7 +73,7 @@
         // 设置标题字体
         *titleFont = [UIFont systemFontOfSize:20];
         *titleHeight = 80;
-//        *titleWidth = 100;
+        *titleWidth = 100;
     }];
     
     [self setUpUnderLineEffect:^(BOOL *isShowUnderLine, BOOL *isDelayScroll, CGFloat *underLineH, CGFloat *underLineW, UIColor *__autoreleasing *underLineColor) {
@@ -92,17 +92,17 @@
     
     // 段子
     TestViewController *wordVc1 = [[TestViewController alloc] init];
-    wordVc1.title = @"界面1";
+    wordVc1.title = @"界sdasd1";
     [self addChildViewController:wordVc1];
     
     // 段子
     TestViewController *wordVc2 = [[TestViewController alloc] init];
-    wordVc2.title = @"界面界面2";
+    wordVc2.title = @"界2";
     [self addChildViewController:wordVc2];
     //
     // 段子
     TestViewController *wordVc3 = [[TestViewController alloc] init];
-    wordVc3.title = @"界3";
+    wordVc3.title = @"界skadjakd3";
     [self addChildViewController:wordVc3];
     
     TestViewController *wordVc4 = [[TestViewController alloc] init];
@@ -113,26 +113,26 @@
     TestViewController *allVc = [[TestViewController alloc] init];
     allVc.title = @"界面界面界面5";
     [self addChildViewController:allVc];
-    ////
-    //    // 视频
-    //    TestViewController *videoVc = [[TestViewController alloc] init];
-    //    videoVc.title = @"界面6";
-    //    [self addChildViewController:videoVc];
-    
-    //    // 声音
-    //    TestViewController *voiceVc = [[TestViewController alloc] init];
-    //    voiceVc.title = @"界面7";
-    //    [self addChildViewController:voiceVc];
-    ////
-    //    // 图片
-    //    TestViewController *pictureVc = [[TestViewController alloc] init];
-    //    pictureVc.title = @"界面8";
-    //    [self addChildViewController:pictureVc];
     //
-    //    // 段子
-    //    TestViewController *wordVc = [[TestViewController alloc] init];
-    //    wordVc.title = @"界面9";
-    //    [self addChildViewController:wordVc];
+        // 视频
+        TestViewController *videoVc = [[TestViewController alloc] init];
+        videoVc.title = @"界面6";
+        [self addChildViewController:videoVc];
+    
+        // 声音
+        TestViewController *voiceVc = [[TestViewController alloc] init];
+        voiceVc.title = @"界面7";
+        [self addChildViewController:voiceVc];
+    //
+        // 图片
+        TestViewController *pictureVc = [[TestViewController alloc] init];
+        pictureVc.title = @"界面8";
+        [self addChildViewController:pictureVc];
+    
+        // 段子
+        TestViewController *wordVc = [[TestViewController alloc] init];
+        wordVc.title = @"界面9";
+        [self addChildViewController:wordVc];
     
     
     
