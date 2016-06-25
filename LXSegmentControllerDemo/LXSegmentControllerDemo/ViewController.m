@@ -23,9 +23,9 @@
     [self setUpAllViewController];
     
     
-//    [self demo1];
+    [self demo1];
     
-    [self demo2];
+//    [self demo2];
     
     
 }
