@@ -5,13 +5,13 @@
 这个控件还可以传入View作为顶部标签, 实现一些特殊样式的顶部标签, 如下图
 ![image1](https://github.com/CoderLXWang/LXSegmentControllerDemo/blob/master/LXSegmentControllerDemo/image1.png)
 
-##### 其他支持样式: #####
-###### 网易新闻标题+下标样式 ######  
+#####其他支持样式:#####
+######网易新闻标题+下标样式######  
 ![image1](https://github.com/CoderLXWang/LXSegmentControllerDemo/blob/master/LXSegmentControllerDemo/image2.png)
 
-###### 标题+覆盖######   
+######标题+覆盖######   
 ![image1](https://github.com/CoderLXWang/LXSegmentControllerDemo/blob/master/LXSegmentControllerDemo/image3.png)
 ![image1](https://github.com/CoderLXWang/LXSegmentControllerDemo/blob/master/LXSegmentControllerDemo/image4.png)
 
-###### 标题+下划线 (定宽定高)######  
+######标题+下划线 (定宽定高)######  
 ![image1](https://github.com/CoderLXWang/LXSegmentControllerDemo/blob/master/LXSegmentControllerDemo/image5.png)
