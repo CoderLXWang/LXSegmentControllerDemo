@@ -76,7 +76,7 @@
 - (void)initial
 {
     // 初始化标题高度
-    _titleHeight = YZTitleScrollViewH; //44, 赋初值
+    _titleHeight = LXTitleScrollViewH; //44, 赋初值
     _titleWidth = 0;
      self.automaticallyAdjustsScrollViewInsets = NO;
 }
@@ -99,7 +99,7 @@
 - (UIFont *)titleFont
 {
     if (_titleFont == nil) {
-        _titleFont = YZTitleFont;
+        _titleFont = LXTitleFont;
     }
     return _titleFont;
 }
@@ -267,7 +267,7 @@
 {
     _isfullScreen = isfullScreen;
     
-    self.contentView.frame = CGRectMake(0, 0, YZScreenW, YZScreenH);
+    self.contentView.frame = CGRectMake(0, 0, LXScreenW, LXScreenH);
     
 }
 
@@ -362,9 +362,9 @@
 {
     [super viewDidLayoutSubviews];
     
-    CGFloat contentY = self.navigationController ? YZNavBarH : [UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat contentW = YZScreenW;
-    CGFloat contentH = YZScreenH - contentY;
+    CGFloat contentY = self.navigationController ? LXNavBarH : [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat contentW = LXScreenW;
+    CGFloat contentH = LXScreenH - contentY;
     // 设置整个内容的尺寸
     if (self.contentView.height == 0) {
         // 没有设置内容尺寸，才需要设置内容尺寸 setIsfullScreen/setUpContentViewFrame 可以设置
@@ -373,13 +373,13 @@
     
     // 设置标题滚动视图frame
     // 计算尺寸
-    CGFloat titleH = _titleHeight ? _titleHeight : YZTitleScrollViewH;
+    CGFloat titleH = _titleHeight ? _titleHeight : LXTitleScrollViewH;
     CGFloat titleY = _isfullScreen ? contentY : 0;
     self.titleScrollView.frame = CGRectMake(0, titleY, contentW, titleH);
 
     // 设置内容滚动视图frame
     CGFloat contentScrollY = CGRectGetMaxY(self.titleScrollView.frame);
-    self.contentScrollView.frame = _isfullScreen ? CGRectMake(0, 0, contentW, YZScreenH) : CGRectMake(0, contentScrollY, contentW, self.contentView.height - contentScrollY);
+    self.contentScrollView.frame = _isfullScreen ? CGRectMake(0, 0, contentW, LXScreenH) : CGRectMake(0, contentScrollY, contentW, self.contentView.height - contentScrollY);
 }
 
 
@@ -448,7 +448,7 @@
     }
     
     
-    if (totalWidth > YZScreenW) {  //总宽度大于屏幕,
+    if (totalWidth > LXScreenW) {  //总宽度大于屏幕,
         
 //        _titleMargin =  margin;
         if (!_titleMargin) { //如果没有指定margin,
@@ -459,14 +459,14 @@
 
     } else {
         //如果所有View的label宽度还不到屏幕宽度, 算每个间隙多宽, 要是不到20用20, 大于20均分
-        CGFloat titleMargin = (YZScreenW - totalWidth) / (count + 1);
+        CGFloat titleMargin = (LXScreenW - totalWidth) / (count + 1);
         
         if (_titleWidth) {
             if (_underLineW == _titleWidth) {
-                _underLineW = YZScreenW/count;
+                _underLineW = LXScreenW/count;
             }
             _titleMargin = 0;
-            _titleWidth = YZScreenW/count;
+            _titleWidth = LXScreenW/count;
             [self.titleWidths removeAllObjects];
             for (NSInteger i = 0; i < count; i++) {
                 [self.titleWidths addObject:@(_titleWidth)];
@@ -480,10 +480,10 @@
                 _titleMargin = margin;
             } else {
                 if (_underLineW == _titleWidth) {
-                    _underLineW = YZScreenW/count;
+                    _underLineW = LXScreenW/count;
                 }
                 _titleMargin = 0;
-                _titleWidth = YZScreenW/count;
+                _titleWidth = LXScreenW/count;
                 [self.titleWidths removeAllObjects];
                 for (NSInteger i = 0; i < count; i++) {
                     [self.titleWidths addObject:@(_titleWidth)];
@@ -544,7 +544,7 @@
                 // 设置标题滚动视图的内容范围
                 _titleScrollView.contentSize = CGSizeMake(CGRectGetMaxX(view.frame), 0);
                 _titleScrollView.showsHorizontalScrollIndicator = NO;
-                _contentScrollView.contentSize = CGSizeMake(count * YZScreenW, 0);
+                _contentScrollView.contentSize = CGSizeMake(count * LXScreenW, 0);
             }
             
         }
@@ -557,7 +557,7 @@
             
             UILabel *label = [[LXDisplayTitleLabel alloc] init];
             
-            label.backgroundColor = [UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1];
+//            label.backgroundColor = [UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1];
             
             label.tag = i;
             
@@ -584,6 +584,7 @@
             
             // 保存到数组
             [self.titleLabels addObject:label];
+            [self.titleScrollView addSubview:label];
             [self.titleScrollView insertSubview:label belowSubview:self.underLine];
             
             if (i == _selectIndex) {
@@ -594,7 +595,7 @@
             if (i == count - 1) {
                 _titleScrollView.contentSize = CGSizeMake(CGRectGetMaxX(label.frame), 0);
                 _titleScrollView.showsHorizontalScrollIndicator = NO;
-                _contentScrollView.contentSize = CGSizeMake(count * YZScreenW, 0);
+                _contentScrollView.contentSize = CGSizeMake(count * LXScreenW, 0);
             }
         }
 
@@ -609,7 +610,7 @@
     if (_isShowTitleGradient == NO) return;
     
     // 获取右边缩放
-    CGFloat rightSacle = offsetX / YZScreenW - leftLabel.tag;
+    CGFloat rightSacle = offsetX / LXScreenW - leftLabel.tag;
     
     // 获取左边缩放比例
     CGFloat leftScale = 1 - rightSacle;
@@ -674,11 +675,11 @@
     if (_isShowTitleScale == NO) return;
     
     // 获取右边缩放
-    CGFloat rightSacle = offsetX / YZScreenW - leftLabel.tag;
+    CGFloat rightSacle = offsetX / LXScreenW - leftLabel.tag;
     
     CGFloat leftScale = 1 - rightSacle;
     
-    CGFloat scaleTransform = _titleScale?_titleScale:YZTitleTransformScale;
+    CGFloat scaleTransform = _titleScale?_titleScale:LXTitleTransformScale;
     
     scaleTransform -= 1;
     
@@ -722,11 +723,11 @@
     // 获取移动距离
     CGFloat offsetDelta = offsetX - _lastOffsetX;
     
-    // 计算当前下划线偏移量, offsetX将要移动一个屏幕宽度, 上面的标题下标只会移动centerDelta, 即两个标题中心的距离, 要计算屏幕移动的同时下标移动多少, 先算出centerDelta / YZScreenW, 将centerDelta拆成屏幕宽度份(320份), 乘以屏幕移动的offsetDelta
-    CGFloat underLineTransformX = xDelta / YZScreenW * offsetDelta;
+    // 计算当前下划线偏移量, offsetX将要移动一个屏幕宽度, 上面的标题下标只会移动centerDelta, 即两个标题中心的距离, 要计算屏幕移动的同时下标移动多少, 先算出centerDelta / LXScreenW, 将centerDelta拆成屏幕宽度份(320份), 乘以屏幕移动的offsetDelta
+    CGFloat underLineTransformX = xDelta / LXScreenW * offsetDelta;
     
     // 宽度递增偏移量
-    CGFloat underLineWidth = _underLineW ? 0 : widthDelta / YZScreenW * offsetDelta;
+    CGFloat underLineWidth = _underLineW ? 0 : widthDelta / LXScreenW * offsetDelta;
     
     self.underLine.width += underLineWidth;
     self.underLine.center = CGPointMake(self.underLine.center.x + underLineTransformX, self.underLine.center.y);
@@ -749,10 +750,10 @@
     CGFloat offsetDelta = offsetX - _lastOffsetX;
     
     // 计算当前下划线偏移量
-    CGFloat coverTransformX = offsetDelta * centerDelta / YZScreenW;
+    CGFloat coverTransformX = offsetDelta * centerDelta / LXScreenW;
     
     // 宽度递增偏移量
-    CGFloat coverWidth = offsetDelta * widthDelta / YZScreenW;
+    CGFloat coverWidth = offsetDelta * widthDelta / LXScreenW;
     
     self.coverView.width += coverWidth;
     self.coverView.x += coverTransformX;
@@ -787,7 +788,7 @@
     [self selectTitleView:titleView];
     
     // 内容滚动视图滚动到对应位置
-    CGFloat offsetX = i * YZScreenW;
+    CGFloat offsetX = i * LXScreenW;
     
     [self.contentScrollView setContentOffset:CGPointMake(offsetX, 0) animated:_scrollAnimation];
     
@@ -800,11 +801,11 @@
     // 判断控制器的view有没有加载，没有就加载，加载完在发送通知
     if (vc.view) {
         // 发出通知点击标题通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:YZDisplayViewClickOrScrollDidFinshNote  object:vc];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LXDisplayViewClickOrScrollDidFinshNote  object:vc];
         
         // 发出重复点击标题通知
         if (_selIndex == i) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:YZDisplayViewRepeatClickTitleNote object:vc];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LXDisplayViewRepeatClickTitleNote object:vc];
         }
     }
     
@@ -843,7 +844,7 @@
         // 标题缩放
         if (_isShowTitleScale && _titleColorGradientStyle == YZTitleColorGradientStyleRGB) {
             
-            CGFloat scaleTransform = _titleScale?_titleScale:YZTitleTransformScale;
+            CGFloat scaleTransform = _titleScale?_titleScale:LXTitleTransformScale;
             
             realLabel.transform = CGAffineTransformMakeScale(scaleTransform, scaleTransform);
         }
@@ -914,7 +915,7 @@
         titleBounds = [realLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.titleFont} context:nil];
     }
     
-    CGFloat underLineH = _underLineH ? _underLineH : YZUnderLineH;
+    CGFloat underLineH = _underLineH ? _underLineH : LXUnderLineH;
     
     CGFloat underLineW;
 
@@ -946,14 +947,14 @@
 {
     
     // 设置标题滚动区域的偏移量, 如果点击的label超过屏幕一般的位置, 要把它移动到中间, 即为偏移量
-    CGFloat offsetX = label.center.x - YZScreenW * 0.5;
+    CGFloat offsetX = label.center.x - LXScreenW * 0.5;
     
     if (offsetX < 0) {
         offsetX = 0;
     }
     
     // 计算下最大的标题视图滚动区域
-    CGFloat maxOffsetX = self.titleScrollView.contentSize.width - YZScreenW + _titleMargin;
+    CGFloat maxOffsetX = self.titleScrollView.contentSize.width - LXScreenW + _titleMargin;
     
     if (maxOffsetX < 0) {
         maxOffsetX = 0;
@@ -1016,15 +1017,15 @@
 {
     CGFloat offsetX = scrollView.contentOffset.x;
     NSInteger offsetXInt = offsetX;
-    NSInteger screenWInt = YZScreenW;
+    NSInteger screenWInt = LXScreenW;
     
     NSInteger extre = offsetXInt % screenWInt;
-    if (extre > YZScreenW * 0.5) {
+    if (extre > LXScreenW * 0.5) {
         // 往右边移动
-        offsetX = offsetX + (YZScreenW - extre);
+        offsetX = offsetX + (LXScreenW - extre);
         _isAniming = YES;
         [self.contentScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-    }else if (extre < YZScreenW * 0.5 && extre > 0){
+    }else if (extre < LXScreenW * 0.5 && extre > 0){
         _isAniming = YES;
         // 往左边移动
         offsetX =  offsetX - extre;
@@ -1032,7 +1033,7 @@
     }
     
     // 获取角标
-    NSInteger i = offsetX / YZScreenW;
+    NSInteger i = offsetX / LXScreenW;
     
     // 选中标题
     NSArray *array;
@@ -1047,7 +1048,7 @@
     UIViewController *vc = self.childViewControllers[i];
     
     // 发出通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:YZDisplayViewClickOrScrollDidFinshNote object:vc];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LXDisplayViewClickOrScrollDidFinshNote object:vc];
 }
 
 
@@ -1072,7 +1073,7 @@
     CGFloat offsetX = scrollView.contentOffset.x;
     
     // 获取左边角标
-    NSInteger leftIndex = offsetX / YZScreenW;
+    NSInteger leftIndex = offsetX / LXScreenW;
     // 右边角标
     NSInteger rightIndex = leftIndex + 1;
     

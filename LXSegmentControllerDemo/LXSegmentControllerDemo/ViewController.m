@@ -20,14 +20,53 @@
     self.title = @"滑动视图";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    //什么都不设置, 默认样式
     [self setUpAllViewController];
     
     
-    [self demo1];
+    //需设置TestViewController中的tableView高度为[UIScreen mainScreen].bounds.size.height - 64- 顶部高度
+    //传入View
+//    [self demo1];
     
+    //传入title, 定宽定高
 //    [self demo2];
     
+    //需设置TestViewController中的tableView高度为[UIScreen mainScreen].bounds.size.height - 64- 44
+    //传入title, 使用下标样式
+//    [self demo3];
     
+    //传入title, 使用覆盖样式
+//    [self demo4];
+}
+
+- (void)demo4 {
+    [self setUpTitleEffect:^(UIColor *__autoreleasing *titleScrollViewColor, UIColor *__autoreleasing *norColor, UIColor *__autoreleasing *selColor, UIFont *__autoreleasing *titleFont, CGFloat *titleHeight, CGFloat *titleWidth) {
+        
+        // 设置标题字体
+        *titleFont = [UIFont systemFontOfSize:20];
+    }];
+    
+    [self setUpCoverEffect:^(BOOL *isShowTitleCover, UIColor *__autoreleasing *coverColor, CGFloat *coverCornerRadius) {
+        *isShowTitleCover = YES;
+        *coverColor = [UIColor grayColor];
+        *coverCornerRadius = 10.0;
+    }];
+}
+
+- (void)demo3 {
+    [self setUpTitleEffect:^(UIColor *__autoreleasing *titleScrollViewColor, UIColor *__autoreleasing *norColor, UIColor *__autoreleasing *selColor, UIFont *__autoreleasing *titleFont, CGFloat *titleHeight, CGFloat *titleWidth) {
+        
+        // 设置标题字体
+        *titleFont = [UIFont systemFontOfSize:20];
+    }];
+    
+    [self setUpUnderLineEffect:^(BOOL *isShowUnderLine, BOOL *isDelayScroll, CGFloat *underLineH, CGFloat *underLineW, UIColor *__autoreleasing *underLineColor) {
+        // 是否显示标签
+        *isShowUnderLine = YES;
+        
+        // 标题填充模式
+        *underLineColor = [UIColor redColor];
+    }];
 }
 
 - (void)demo1 {
@@ -90,17 +129,16 @@
 - (void)setUpAllViewController
 {
     
-    // 段子
     TestViewController *wordVc1 = [[TestViewController alloc] init];
     wordVc1.title = @"界sdasd1";
     [self addChildViewController:wordVc1];
     
-    // 段子
+    
     TestViewController *wordVc2 = [[TestViewController alloc] init];
     wordVc2.title = @"界2";
     [self addChildViewController:wordVc2];
     //
-    // 段子
+    
     TestViewController *wordVc3 = [[TestViewController alloc] init];
     wordVc3.title = @"界skadjakd3";
     [self addChildViewController:wordVc3];
@@ -109,30 +147,28 @@
     wordVc4.title = @"界面4";
     [self addChildViewController:wordVc4];
     
-    // 全部
+    
     TestViewController *allVc = [[TestViewController alloc] init];
     allVc.title = @"界面界面界面5";
     [self addChildViewController:allVc];
-    //
-        // 视频
-        TestViewController *videoVc = [[TestViewController alloc] init];
-        videoVc.title = @"界面6";
-        [self addChildViewController:videoVc];
     
-        // 声音
-        TestViewController *voiceVc = [[TestViewController alloc] init];
-        voiceVc.title = @"界面7";
-        [self addChildViewController:voiceVc];
-    //
-        // 图片
-        TestViewController *pictureVc = [[TestViewController alloc] init];
-        pictureVc.title = @"界面8";
-        [self addChildViewController:pictureVc];
+    TestViewController *videoVc = [[TestViewController alloc] init];
+    videoVc.title = @"界面6";
+    [self addChildViewController:videoVc];
     
-        // 段子
-        TestViewController *wordVc = [[TestViewController alloc] init];
-        wordVc.title = @"界面9";
-        [self addChildViewController:wordVc];
+    
+    TestViewController *voiceVc = [[TestViewController alloc] init];
+    voiceVc.title = @"界面7";
+    [self addChildViewController:voiceVc];
+    
+    
+    TestViewController *pictureVc = [[TestViewController alloc] init];
+    pictureVc.title = @"界面8";
+    [self addChildViewController:pictureVc];
+    
+    TestViewController *wordVc = [[TestViewController alloc] init];
+    wordVc.title = @"界面9";
+    [self addChildViewController:wordVc];
     
     
     

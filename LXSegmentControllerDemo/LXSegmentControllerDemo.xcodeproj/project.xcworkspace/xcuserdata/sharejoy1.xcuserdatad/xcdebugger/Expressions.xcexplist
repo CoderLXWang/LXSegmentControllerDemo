@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[LXSegmentController viewDidLayoutSubviews]:LXSegmentController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "contentH">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[LXSegmentController setUpAllTitle]:LXSegmentController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.titleLabels">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
